@@ -1,6 +1,10 @@
 
 // Gestion de l'authentification
 
+let token = window.localStorage.getItem("token");
+if (token) {
+    window.location.href = 'index.html';
+}
 loginForm.addEventListener("submit", login);
 
 function displayError(message) {
@@ -47,5 +51,5 @@ async function login(event) {
     
     //console.log(data.token);
     window.localStorage.setItem("token", data.token);
-    // window.location.href = 'index.html';
+    window.location.href = 'index.html';
 }

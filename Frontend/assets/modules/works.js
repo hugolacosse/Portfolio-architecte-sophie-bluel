@@ -1,8 +1,13 @@
 
 /* ** Manage architect's works ** */
 
-const works = await (await fetch("http://localhost:5678/api/works")).json();
-const categories = await (await fetch("http://localhost:5678/api/categories")).json();
+export async function initPortfolio() {
+    const works = await (await fetch("http://localhost:5678/api/works")).json();
+    const categories = await (await fetch("http://localhost:5678/api/categories")).json();
+
+    createGallery(works);
+    createFilters(categories, works);
+}
 
 // Clear and add works to the gallery
 function createGallery(works) {
@@ -78,12 +83,3 @@ function createFilters(categories, works) {
 
 // get list of categories from the list of works
 function getCategories() {}
-
-async function initPortfolio() {
-    if (works && categories) {
-        // createGallery(works);
-        createFilters(categories, works);
-    }
-}
-
-export { initPortfolio };
