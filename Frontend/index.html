@@ -12,18 +12,18 @@
 	<script type="module" src="./assets/index.js"></script>
 </head>
 <body>
-<header>
+<header class="clippedWidth">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
+			<li><a href="">projets</a></li>
+			<li><a href="#contact">contact</a></li>
+			<li><a href="login.html" id="auth">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
-<main>
+<main class="clippedWidth">
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
@@ -103,11 +103,13 @@
 </main>
 
 <footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
+	<div class="footerContainer">
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</div>
 </footer>
 </body>
 </html>
