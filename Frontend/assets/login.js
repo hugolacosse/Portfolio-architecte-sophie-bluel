@@ -1,24 +1,55 @@
 
 // Gestion de l'authentification
 
+function displayError(message) {
+    let spanErrorMessage = document.getElementById("errorMessage");
+
+    if (message === "" && spanErrorMessage) {
+        spanErrorMessage.remove()
+        return ;
+    }
+
+    if (message !== "" && !spanErrorMessage) {
+        let container = document.querySelector(".errorContainer");
+        
+        spanErrorMessage = document.createElement("span");
+        spanErrorMessage.id = "errorMessage";
+        spanErrorMessage.innerText = message;
+
+        container.append(spanErrorMessage);
+    }
+}
+
 async function login(event) {
     event.preventDefault();
-    //console.log(form["email"].value);
-    //console.log(form["password"].value);
+    console.log("click");
+    submitButton.disabled = true;
 
+    //`{"email": "sophie.bluel@test.tld", "password": "S0phie"}`,
     const response = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: `{"email": "sophie.bluel@test.tld", "password": "S0phie"}`,
+        body: JSON.stringify({
+            email: form.email.value,
+            password: form.password.value
+        })
     });
+
+    //console.log(response);
+    if (response.status !== 200) {
+        displayError("Erreur dans l'identifiant ou le mot de passe");
+        submitButton.disabled = false;
+        return ;
+    }
+    displayError("");
     const data = await response.json();
-    console.log(data);
     
-    //window.location.href = 'index.html';
+    //console.log(data.token);
+    window.localStorage.setItem("token", data.token);
+    // window.location.href = 'index.html';
 }
 
 const form = document.getElementById("loginForm");
 if (form) {
     form.addEventListener("submit", login);
 }
-

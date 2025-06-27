@@ -1,12 +1,15 @@
 
 /* ** Manage architect's works ** */
 
+const works = await (await fetch("http://localhost:5678/api/works")).json();
+const categories = await (await fetch("http://localhost:5678/api/categories")).json();
+
+// Clear and add works to the gallery
 function createGallery(works) {
     const gallery = document.querySelector(".gallery");
 
     gallery.innerHTML = "";
     for (let i = 0; i < works.length; i++) {
-        //console.log(works[i]);
         const work = document.createElement("figure");
 
         const img = document.createElement("img");
@@ -22,6 +25,7 @@ function createGallery(works) {
     }
 }
 
+// Update filter buttons style
 function updateFilters(target) {
     const filters = document.getElementsByClassName("filter-button");
 
@@ -38,9 +42,11 @@ function updateFilters(target) {
     }
 }
 
+// Add filter buttons
 function createFilters(categories, works) {
     const filtersContainer = document.querySelector(".filters-container");
 
+    // firstButton does not filter works
     const firstButton = document.createElement("button");
     firstButton.innerText = "Tous";
     firstButton.classList.add("filter-button");
@@ -51,6 +57,7 @@ function createFilters(categories, works) {
     });
     filtersContainer.appendChild(firstButton);
 
+    // other buttons filter works
     for (let i = 0; i < categories.length; i++) {
         const button = document.createElement("button");
         button.innerText = categories[i].name;
@@ -64,19 +71,19 @@ function createFilters(categories, works) {
             createGallery(filteredWorks);
         });
         filtersContainer.appendChild(button);
-
     }
 
-    createGallery(works);
+    
 }
 
-async function createFiltersAndGallery() {
-    const works = await (await fetch("http://localhost:5678/api/works")).json();
-    const categories = await (await fetch("http://localhost:5678/api/categories")).json();
-    
+// get list of categories from the list of works
+function getCategories() {}
+
+async function initPortfolio() {
     if (works && categories) {
+        // createGallery(works);
         createFilters(categories, works);
     }
 }
 
-export { createFiltersAndGallery };
+export { initPortfolio };
