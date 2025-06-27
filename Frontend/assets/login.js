@@ -1,6 +1,8 @@
 
 // Gestion de l'authentification
 
+loginForm.addEventListener("submit", login);
+
 function displayError(message) {
     let spanErrorMessage = document.getElementById("errorMessage");
 
@@ -15,14 +17,13 @@ function displayError(message) {
         spanErrorMessage = document.createElement("span");
         spanErrorMessage.id = "errorMessage";
         spanErrorMessage.innerText = message;
-
         container.append(spanErrorMessage);
     }
 }
 
 async function login(event) {
     event.preventDefault();
-    console.log("click");
+    //console.log("click");
     submitButton.disabled = true;
 
     //`{"email": "sophie.bluel@test.tld", "password": "S0phie"}`,
@@ -30,8 +31,8 @@ async function login(event) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            email: form.email.value,
-            password: form.password.value
+            email: loginForm.email.value,
+            password: loginForm.password.value
         })
     });
 
@@ -47,9 +48,4 @@ async function login(event) {
     //console.log(data.token);
     window.localStorage.setItem("token", data.token);
     // window.location.href = 'index.html';
-}
-
-const form = document.getElementById("loginForm");
-if (form) {
-    form.addEventListener("submit", login);
 }

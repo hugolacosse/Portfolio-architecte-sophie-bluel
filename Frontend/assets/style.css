@@ -168,7 +168,6 @@ margin: auto;
 }
 #contact > * {
 	text-align: center;
-
 }
 #contact h2{
 	margin-bottom: 20px;
@@ -207,7 +206,7 @@ input[type="submit"]{
 
 footer {
 	margin-top: auto;
-	background-color: cyan;
+	background-color: white;
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -219,7 +218,7 @@ footer {
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	padding: 2em;
+	padding: 2em 0 2em 2em;
 }
 
 /* My work 9px */
@@ -255,6 +254,18 @@ footer nav ul {
 	background-color: #1D6154;
 }
 
+/* Login Page */
+
+#errorMessage {
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+	width: 100%;
+	background-color: rgba(211,47,47, 0.4);
+	padding: 20px;
+	border-radius: 6px;
+}
+
 
 #login {
 	width: 50%;
@@ -267,18 +278,6 @@ footer nav ul {
 
 #login h2{
 	margin-bottom: 20px;
-}
-
-/* Login Page */
-
-#errorMessage {
-	display: inline-block;
-	text-align: left;
-	font-weight: bold;
-	width: 100%;
-	background-color: rgba(211,47,47, 0.4);
-	padding: 20px;
-	border-radius: 6px;
 }
 
 #login form {
