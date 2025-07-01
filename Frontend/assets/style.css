@@ -58,6 +58,25 @@ body {
 	align-items: center;
 	min-height: 100vh;
 }
+
+/****** index edit's header ***********/
+.edit-header {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	min-height: 59px;
+	border-bottom: 1px solid black;
+	width: 100%;
+	background-color: black;
+	color: white;
+	font-size: 1.4em;
+}
+
+.edit-header span {
+	padding: 15px;
+}
+
+/**  header ... **/
 header {
 	width: 100%;
 	max-width: 1140px;
@@ -146,6 +165,9 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+/****** index portfolio ***********/
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
@@ -160,8 +182,39 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
+.portfolio-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.portfolio-container div {
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+}
+
+.portfolio-title {
+	margin: 0px !important;
+	display: flex;
+	width: fit-content;
+}
+
+.portfolio-edit-span {
+	display: none;
+	font-size: 16px;
+    color: black;
+}
+
+.portfolio-edit-span .fa-solid {
+	padding: 0px 10px 0px 40px;
+}
+
+/****** index contact form ***********/
+
 #contact {
 	width: 50%;
 margin: auto;
