@@ -1,10 +1,13 @@
 
 // Gestion de l'authentification
 
-let token = window.localStorage.getItem("token");
-if (token) {
+// Redirect user to index.html if he is already logged in.
+if (window.localStorage.getItem("token")) {
+    //console.log("login.html: User already logged in, redirecting to index.html.");
     window.location.href = 'index.html';
 }
+
+// Listen for submit
 loginForm.addEventListener("submit", login);
 
 function displayError(message) {
@@ -27,7 +30,6 @@ function displayError(message) {
 
 async function login(event) {
     event.preventDefault();
-    //console.log("click");
     submitButton.disabled = true;
 
     //`{"email": "sophie.bluel@test.tld", "password": "S0phie"}`,
@@ -39,17 +41,13 @@ async function login(event) {
             password: loginForm.password.value
         })
     });
-
-    //console.log(response);
     if (response.status !== 200) {
         displayError("Erreur dans l'identifiant ou le mot de passe");
         submitButton.disabled = false;
         return ;
     }
-    displayError("");
+
     const data = await response.json();
-    
-    //console.log(data.token);
     window.localStorage.setItem("token", data.token);
     window.location.href = 'index.html';
 }

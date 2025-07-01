@@ -260,12 +260,11 @@ footer nav ul {
 	display: inline-block;
 	text-align: left;
 	font-weight: bold;
-	width: 100%;
+	width: calc(100% - 20px);
 	background-color: rgba(211,47,47, 0.4);
-	padding: 20px;
+	padding: 20px 0px 20px 20px;
 	border-radius: 6px;
 }
-
 
 #login {
 	width: 50%;
