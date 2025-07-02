@@ -73,7 +73,7 @@ body {
 .edit-header a {
 	color: white;
 	text-decoration: none;
-	font-size: 1.4em;
+	font-size: 16px;
 	padding-right: 15px;
 }
 
@@ -284,6 +284,14 @@ li:hover {
 
 }
 
+.modal-ctrl {
+	padding: 5px;
+	font-size: 14px;
+	border: none;
+	background-color: white;
+	color: black;
+}
+
 .modal-galery {
 	width: 100%;
 	display: flex;
@@ -292,12 +300,22 @@ li:hover {
 	align-items: center;
 }
 
+.modal-galery-ctrl {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.modal-ctrl:hover {
+	cursor: pointer;
+}
+
 .modal-galery-container {
 	display: flex;
 	flex-wrap: wrap;
 	width: 340px;
 	padding-bottom: 30px;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #B3B3B3;
 	margin-bottom: 30px;
 	gap: 10px;
 }
@@ -326,21 +344,27 @@ li:hover {
 	cursor: pointer;
 }
 
-.modal-galery-btn {
-	width: 100%;
-	display: flex;
-	justify-content: flex-end;
+.btn {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	text-align: center;
+	border-radius: 60px;
+	border: none;
+	padding: 10px 50px;
+	font-size: 14px;
 }
 
 .modal-form {
 	width: 100%;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.modal-form-btn {
+.modal-form-ctrl {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -384,6 +408,12 @@ li:hover {
 .input-file-div p {
 	color: #444444;
 	font-size: 10px;
+}
+
+.form-hr {
+	width: 100%;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #B3B3B3;
 }
 
 /****** index contact form ***********/

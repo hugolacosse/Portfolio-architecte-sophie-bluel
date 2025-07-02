@@ -1,5 +1,8 @@
-import { initPortfolio } from "./modules/works.js"
-import { openEditModal } from "./modules/modal.js"
+import { getCategories, getItems, displayFilters, displayGallery } from "./modules/works.js";
+import { openEditModal } from "./modules/modal.js";
+
+let categories = await getCategories();
+let items = await getItems()
 
 let userToken = window.localStorage.getItem("token");
 if (userToken) {
@@ -13,15 +16,11 @@ if (userToken) {
 
     displayEditHeader();
     displayEditAnchor();
+} else {
+    displayFilters(categories, items);
 }
 
-initPortfolio();
-
-// const categories = await getCategories();
-// const items = await getItems();
-
-// if (!user) displayFilters();
-// displayItems();
+displayGallery(items);
 
 function displayEditHeader() {
     const editHeader = document.querySelector(".edit-header")

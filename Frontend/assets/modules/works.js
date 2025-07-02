@@ -1,32 +1,43 @@
 
 /* ** Manage architect's works ** */
 
-export async function initPortfolio() {
-    const works = await (await fetch("http://localhost:5678/api/works")).json();
+export async function getCategories() {
     const categories = await (await fetch("http://localhost:5678/api/categories")).json();
-
-    createGallery(works);
-    createFilters(categories, works);
+    return categories;
 }
 
-// Clear and add works to the gallery
-function createGallery(works) {
-    const gallery = document.querySelector(".gallery");
+export async function getItems() {
+    const items = await (await fetch("http://localhost:5678/api/works")).json();
+    return items;
+}
 
-    gallery.innerHTML = "";
-    for (let i = 0; i < works.length; i++) {
-        const work = document.createElement("figure");
+export function displayFilters(categories, items) {
+    const filtersContainer = document.querySelector(".filters-container");
 
-        const img = document.createElement("img");
-        img.setAttribute("src", works[i].imageUrl);
-        img.setAttribute("alt", works[i].title);
-        work.appendChild(img);
+    // firstButton display every items
+    const firstButton = document.createElement("button");
+    firstButton.innerText = "Tous";
+    firstButton.classList.add("filter-button");
+    firstButton.classList.add("filter-button-selected");
+    firstButton.addEventListener("click", function (event) {
+        updateFilters(event.target);
+        displayGallery(items);
+    });
+    filtersContainer.appendChild(firstButton);
 
-        const title = document.createElement("figcaption");
-        title.innerText = works[i].title;
-        work.appendChild(title);
-
-        gallery.appendChild(work);
+    for (let i = 0; i < categories.length; i++) {
+        const button = document.createElement("button");
+        button.innerText = categories[i].name;
+        button.classList.add("filter-button");
+        button.addEventListener("click", function (event) {
+            const id = i + 1;
+            const filteredItems = items.filter(function (item) {
+                return item.categoryId === id;
+            });
+            updateFilters(event.target);
+            displayGallery(filteredItems);
+        });
+        filtersContainer.appendChild(button);
     }
 }
 
@@ -47,39 +58,22 @@ function updateFilters(target) {
     }
 }
 
-// Add filter buttons
-function createFilters(categories, works) {
-    const filtersContainer = document.querySelector(".filters-container");
+export function displayGallery(items) {
+    const gallery = document.querySelector(".gallery");
 
-    // firstButton does not filter works
-    const firstButton = document.createElement("button");
-    firstButton.innerText = "Tous";
-    firstButton.classList.add("filter-button");
-    firstButton.classList.add("filter-button-selected");
-    firstButton.addEventListener("click", function (event) {
-        updateFilters(event.target);
-        createGallery(works);
-    });
-    filtersContainer.appendChild(firstButton);
+    gallery.innerHTML = "";
+    for (let i = 0; i < items.length; i++) {
+        const item = document.createElement("figure");
 
-    // other buttons filter works
-    for (let i = 0; i < categories.length; i++) {
-        const button = document.createElement("button");
-        button.innerText = categories[i].name;
-        button.classList.add("filter-button");
-        button.addEventListener("click", function (event) {
-            const id = i + 1;
-            const filteredWorks = works.filter(function (work) {
-                return work.categoryId === id;
-            });
-            updateFilters(event.target);
-            createGallery(filteredWorks);
-        });
-        filtersContainer.appendChild(button);
+        const img = document.createElement("img");
+        img.setAttribute("src", items[i].imageUrl);
+        img.setAttribute("alt", items[i].title);
+        item.appendChild(img);
+
+        const title = document.createElement("figcaption");
+        title.innerText = items[i].title;
+        item.appendChild(title);
+
+        gallery.appendChild(item);
     }
-
-    
 }
-
-// get list of categories from the list of works
-function getCategories() {}
