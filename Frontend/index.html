@@ -16,8 +16,7 @@
 	</head>
 	<body>
 		<div class="edit-header">
-			<span class="fa-solid fa-pen-to-square"></span>
-			<p>Mode édition</p>
+			<a href="#open-modal"><span class="fa-solid fa-pen-to-square"></span>Mode édition</a>
 		</div>
 		<header>
 			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -47,9 +46,24 @@
 					<div></div>
 					<h2 class="portfolio-title">Mes Projets</h2>
 					<div class="portfolio-edit">
-						<span class="portfolio-edit-span"><span class="fa-solid fa-pen-to-square"></span>modifier</span>
+						<a href="#open-modal">
+							<span class="fa-solid fa-pen-to-square"></span>
+							modifier
+						</a>
 					</div>
 				</div>
+
+				<aside id="modal" class="modal" aria-hidden="true">
+					<div class="modal-wrapper">
+						<div class="modal-control-button">
+							<button class="modal-left-button"><span class="fa-solid fa-arrow-left"></span></button>
+							<button class="modal-right-button"><span class="fa-solid fa-xmark"></span></button>
+						</div>
+						<h3>Galerie photo</h3>
+						<div class="modal-gallery"></div>
+						<button class="modal-button">Ajouter une photo</button>
+					</div>           
+				</aside>
 
 				<div class="filters-container"></div>
 

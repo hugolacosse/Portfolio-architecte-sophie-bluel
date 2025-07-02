@@ -61,15 +61,20 @@ body {
 
 /****** index edit's header ***********/
 .edit-header {
+	width: 100%;
+	min-height: 59px;
 	display: none;
 	justify-content: center;
 	align-items: center;
-	min-height: 59px;
 	border-bottom: 1px solid black;
-	width: 100%;
 	background-color: black;
+}
+
+.edit-header a {
 	color: white;
+	text-decoration: none;
 	font-size: 1.4em;
+	padding-right: 15px;
 }
 
 .edit-header span {
@@ -168,22 +173,6 @@ li:hover {
 
 /****** index portfolio ***********/
 
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-.gallery img {
-	width: 100%;
-}
-
 .portfolio-container {
 	display: flex;
 	flex-direction: row;
@@ -197,21 +186,113 @@ li:hover {
 	align-items: center;
 }
 
-.portfolio-title {
-	margin: 0px !important;
+#portfolio h2 {
+	text-align: center;
 	display: flex;
 	width: fit-content;
+	padding: 0px 40px;
 }
 
-.portfolio-edit-span {
+.portfolio-edit a {
 	display: none;
 	font-size: 16px;
     color: black;
+	text-decoration: none;
+	padding: 10px;
 }
 
-.portfolio-edit-span .fa-solid {
-	padding: 0px 10px 0px 40px;
+.portfolio-edit .fa-solid {
+	padding-right: 5px;
 }
+
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+}
+
+/* index filter buttons */
+
+.filters-container {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0px;
+}
+
+.filter-button {
+	min-width: 100px;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	color: #1D6154;
+	background-color: #FFFEF8;
+	margin: 30px 10px;
+	padding: 9px 14px 9px 14px;
+	text-align: center;
+	border: 1px solid #1D6154;
+	border-radius: 60px ;
+}
+
+.filter-button:hover {
+	cursor: pointer;
+	color: white;
+	background-color: #1D6154;
+}
+
+.filter-button-selected {
+	color: white;
+	background-color: #1D6154;
+}
+
+/****** index modal ***********/
+.modal {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+	display: none;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-wrapper {
+	overflow: auto;
+	width: 600px;
+	max-width: calc(100vw - 20px);
+	max-width: calc(100vh - 20px);
+	padding: 20px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-control-button {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.modal-left-button {
+	display: none;
+}
+
+/****** 
+<div class="modal-control-button">
+							<button class="modal-left-button"><span class="fa-solid fa-arrow-left"></span></button>
+							<button class="modal-right-button"><span class="fa-solid fa-xmark"></span></button>
+						</div>
+	 ***********/
 
 /****** index contact form ***********/
 
@@ -274,38 +355,6 @@ footer nav ul {
 	padding: 2em 0 2em 2em;
 }
 
-/* My work 9px */
-
-.filters-container {
-	display: flex;
-	justify-content: center;
-	margin: 20px 0px;
-}
-
-.filter-button {
-	min-width: 100px;
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 16px;
-	color: #1D6154;
-	background-color: white;
-	margin: 30px 10px;
-	padding: 9px 14px 9px 14px;
-	text-align: center;
-	border: 1px solid #1D6154;
-	border-radius: 60px ;
-}
-
-.filter-button:hover {
-	cursor: pointer;
-	color: white;
-	background-color: #1D6154;
-}
-
-.filter-button-selected {
-	color: white;
-	background-color: #1D6154;
-}
 
 /* Login Page */
 
