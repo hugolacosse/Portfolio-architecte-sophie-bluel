@@ -55,14 +55,49 @@
 
 				<aside id="modal" class="modal" aria-hidden="true">
 					<div class="modal-wrapper">
-						<div class="modal-control-button">
-							<button class="modal-left-button"><span class="fa-solid fa-arrow-left"></span></button>
-							<button class="modal-right-button"><span class="fa-solid fa-xmark"></span></button>
+						<div class="modal-galery">
+							<div class="modal-galery-btn">
+								<button class="close-modal-galery"><span class="fa-solid fa-xmark"></span></button>
+							</div>
+							<h3>Galerie photo</h3>
+							<div class="modal-galery-container"></div>
+							<button class="modal-button add-photo">Ajouter une photo</button>
 						</div>
-						<h3>Galerie photo</h3>
-						<div class="modal-gallery"></div>
-						<button class="modal-button">Ajouter une photo</button>
-					</div>           
+
+						<div class="modal-form">
+							<div class="modal-form-btn">
+								<button class="previous-modal-btn">
+									<span class="fa-solid fa-arrow-left"></span>
+								</button>
+								<button class="close-modal-form">
+									<span class="fa-solid fa-xmark"></span>
+								</button>
+							</div>
+							<h3>Ajout photo</h3>
+							<form>
+								<div class="input-file-div">
+									<span class="fa-regular fa-image"></span>
+									<input
+										type="file"
+										id="fileElem"
+										accept=".jpg, .png"
+										style="display: none;"
+									/>
+									<button id="fileSelect" type="button">+ Ajouter photo</button>
+									<p>jpg, png : 4mo max</p>
+								</div>
+								
+								<label for="imgTitle">Titre</label>
+								<input type="text" name="imgTitle" id="imgTitle">
+								<label for="imgCategory">Catégorie</label>
+								<select name="imgCategory" id="imgCategory">
+									<option value=""></option>
+								</select>
+								<hr />
+								<input type="submit" value="Valider" class="modal-button">
+							</form>
+						</div>
+					</div>
 				</aside>
 
 				<div class="filters-container"></div>

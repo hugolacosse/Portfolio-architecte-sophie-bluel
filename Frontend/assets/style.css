@@ -275,24 +275,116 @@ li:hover {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	border-radius: 10px;
 }
 
-.modal-control-button {
+.modal-wrapper h3 {
+	font-size: 1.4em;
+	margin: 10px 0px 20px 0px;
+
+}
+
+.modal-galery {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-galery-container {
+	display: flex;
+	flex-wrap: wrap;
+	width: 340px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid black;
+	margin-bottom: 30px;
+	gap: 10px;
+}
+
+.modal-galery-item {
+	width: 60px;
+	height: 85px;
+	background-size: cover;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+.delete-item-btn {
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	border-radius: 3px;
+	padding: 3px;
+	margin: 3px;
+	border: none;
+	font-size: 0.7em;
+}
+
+.delete-item-btn:hover {
+	cursor: pointer;
+}
+
+.modal-galery-btn {
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
 }
 
-.modal-left-button {
-	display: none;
+.modal-form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-/****** 
-<div class="modal-control-button">
-							<button class="modal-left-button"><span class="fa-solid fa-arrow-left"></span></button>
-							<button class="modal-right-button"><span class="fa-solid fa-xmark"></span></button>
-						</div>
-	 ***********/
+.modal-form-btn {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.modal-form form {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+}
+
+.input-file-div {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+	padding: 20px;
+	margin: 25px 0px;
+	background-color: #E8F1F6;
+	color: #B9C5CC;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.input-file-div span {
+	font-size: 6em;
+}
+
+.input-file-div button {
+	background-color: #CBD6DC;
+	color: #306685;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	padding: 10px 40px;
+	border: none;
+	border-radius: 25px;
+}
+
+.input-file-div p {
+	color: #444444;
+	font-size: 10px;
+}
 
 /****** index contact form ***********/
 
