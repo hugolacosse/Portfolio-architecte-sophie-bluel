@@ -2,50 +2,55 @@
 
 //      affiche la liste des travaux et un formulaire d'ajout des travaux
 
+const modalGallery = document.querySelector(".modal-gallery");
+const modalForm = document.querySelector(".modal-form");
+
+/* close modal */
+// close modal and reset modal display
 const modal = document.getElementById("modal");
 modal.addEventListener("click", (event) => {
     if (event.target === modal) {
         modal.style.display = "none";
         if (modalForm.style.display === "flex") {
             modalForm.style.display = "none";
-            modalGalery.style.display = "flex";
+            modalGallery.style.display = "flex";
         }
     }
 });
 
-const modalGalery = document.querySelector(".modal-galery");
-const modalForm = document.querySelector(".modal-form");
-
-const closeModalGaleryBtn = document.querySelector(".close-modal-galery");
-closeModalGaleryBtn.addEventListener("click", (event) => {
+// close modal
+const closeModalGalleryBtn = document.querySelector(".close-modal-gallery");
+closeModalGalleryBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
 });
 
+// close modal and reset modal display
 const closeModalFormBtn = document.querySelector(".close-modal-form");
 closeModalFormBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
     modalForm.style.display = "none";
-    modalGalery.style.display = "flex";
+    modalGallery.style.display = "flex";
 });
+/* *** */
 
+// reset modal display
 const previousModalFormBtn = document.querySelector(".previous-modal-btn");
 previousModalFormBtn.addEventListener("click", () => {
-    const modalGalery = document.querySelector(".modal-galery");
+    const modalGallery = document.querySelector(".modal-gallery");
     const modalForm = document.querySelector(".modal-form");
     modalForm.style.display = "none";
-    modalGalery.style.display = "flex";
+    modalGallery.style.display = "flex";
 });
 
+// display modal form
 const modalAddPhotoBtn = document.querySelector(".add-photo");
-modalAddPhotoBtn.addEventListener("click", addPhoto);
+modalAddPhotoBtn.addEventListener("click", () => {
+    modalGallery.style.display = "none";
+    modalForm.style.display = "flex";
+});
 
 function submitPhoto() {
     // ....
-}
-
-function addPhoto() {
-    modalGalery.style.display = "none";
-    modalForm.style.display = "flex";
 }
 
 async function deleteItem() {
@@ -65,8 +70,9 @@ async function deleteItem() {
     // else alert
 }
 
+/* Add modal gallery and delete buttons */
 function displayModalGallery(items) {
-    const modalGallery = document.querySelector(".modal-galery-container");
+    const modalGallery = document.querySelector(".modal-gallery-container");
 
     modalGallery.innerHTML = "";
     for (let i = 0; i < items.length; i++) {
@@ -74,7 +80,7 @@ function displayModalGallery(items) {
         const item = document.createElement("div");
 
         item.style.backgroundImage = `url(${items[i].imageUrl})`
-        item.classList.add("modal-galery-item");
+        item.classList.add("modal-gallery-item");
 
         const deleteBtn = document.createElement("button");
         deleteBtn.classList.add("delete-item-btn");
