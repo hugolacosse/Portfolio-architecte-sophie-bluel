@@ -85,19 +85,18 @@ h1 > span {
 	font-weight: 400;
 }
 
-nav ul {
+header nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
 }
 
-nav li {
-	font-size: 1.2em;
+header nav li {
+	font-size: 16px;
 }
 
-nav a {
-	padding: 0 60px 0 0;
+header nav a {
+	padding: 0 44px 0 0;
 	color: black;
 	text-decoration: none;
 }
@@ -133,6 +132,7 @@ h2{
 
 /****** footer ***********/
 footer {
+	height: 60px;
 	margin-top: auto;
 	background-color: white;
 	width: 100%;
@@ -142,11 +142,25 @@ footer {
 
 .footer-wrapper {
 	width: 100%;
-	max-width: 1140px;
+	max-width: 1440px;
+}
+
+footer nav {
+	height: 100%;
 }
 
 footer nav ul {
+	margin: none;
+	padding: 0px 105px 0px 0px;
+	height: 100%;
 	display: flex;
 	justify-content: flex-end;
-	padding: 2em 0 2em 2em;
+	align-items: center;
+	font-size: 14px;
 }
+
+/* Check overflow
+* {
+  outline: 1px solid #f00 !important;
+}
+*/

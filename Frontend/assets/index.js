@@ -30,7 +30,7 @@ function displayEditHeader() {
 
 function displayEditAnchor() {
     const editAnchor = document.querySelector(".portfolio-edit a");
-    editAnchor.style.display = "inline";
+    editAnchor.style.display = "inline-flex";
     editAnchor.addEventListener("click", openEditModal);
 }
 
