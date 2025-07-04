@@ -1,9 +1,9 @@
+/****** navbar ***********/
 .current-page {
 	font-weight: bold;
 }
 
-/* Login Page */
-
+/****** login form ***********/
 #errorMessage {
 	display: inline-block;
 	text-align: left;
