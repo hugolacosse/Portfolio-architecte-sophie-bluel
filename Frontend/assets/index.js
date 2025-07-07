@@ -11,6 +11,7 @@ if (userToken) {
         window.localStorage.removeItem("token");
         window.location.href = 'index.html';
     });
+    console.log(userToken);
 
     displayEditHeader();
     displayEditAnchor();

@@ -139,7 +139,6 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 10px;
-	padding: 20px;
 	margin-top: 10px;
 	background-color: #E8F1F6;
 	color: #B9C5CC;
@@ -147,11 +146,17 @@
 	box-sizing: border-box;
 }
 
+.file-wrapper img {
+	width: auto;
+	height: 200px;
+}
+
 .file-wrapper span {
+	padding-top: 20px;
 	font-size: 6em;
 }
 
-.file-wrapper button {
+.file-wrapper #fileLabel {
 	background-color: #CBD6DC;
 	color: #306685;
 	font-family: 'Work Sans';
@@ -162,9 +167,15 @@
 	border-radius: 25px;
 }
 
+.file-wrapper #fileLabel:hover {
+	cursor: pointer;
+	background-color: #b9c5cc;
+}
+
 .file-wrapper p {
 	color: #444444;
 	font-size: 10px;
+	padding-bottom: 20px;
 }
 
 .modal-form label {

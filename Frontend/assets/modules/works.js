@@ -133,3 +133,4 @@ function removeItems(id) {
     displayGallery();
     displayModalGallery();
 }
+
