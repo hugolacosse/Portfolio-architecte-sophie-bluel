@@ -2,7 +2,7 @@ import { getCategories, getItems, displayFilters, displayGallery } from "./modul
 import { openEditModal } from "./modules/modal.js";
 
 let categories = await getCategories();
-let items = await getItems()
+let items = await getItems();
 
 let userToken = window.localStorage.getItem("token");
 if (userToken) {

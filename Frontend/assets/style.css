@@ -150,13 +150,14 @@ footer nav {
 }
 
 footer nav ul {
-	margin: none;
+	margin: 0;
 	padding: 0px 105px 0px 0px;
 	height: 100%;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	font-size: 14px;
+	font-weight: 300;
 }
 
 /* Check overflow

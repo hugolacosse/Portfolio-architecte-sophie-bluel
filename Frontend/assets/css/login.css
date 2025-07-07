@@ -3,15 +3,9 @@
 	font-weight: bold;
 }
 
-/****** login form ***********/
-#errorMessage {
-	display: inline-block;
-	text-align: left;
-	font-weight: bold;
-	width: calc(100% - 20px);
-	background-color: rgba(211,47,47, 0.4);
-	padding: 20px 0px 20px 20px;
-	border-radius: 6px;
+/****** main ***********/
+.current-page {
+	font-weight: 600;
 }
 
 #login {
@@ -27,9 +21,19 @@
 	margin-bottom: 20px;
 }
 
+#errorMessage {
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+	width: calc(100% - 20px);
+	background-color: rgba(211,47,47, 0.4);
+	padding: 20px 0px 20px 20px;
+	border-radius: 6px;
+	margin: 10px auto;
+}
+
 #login form {
 	text-align: left;
-	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -43,6 +47,7 @@
 
 #login label {
 	margin: 2em 0 1em 0;
+	font-weight: 500;
 }
 
 #login input[type="submit"]{
@@ -66,4 +71,5 @@
 #login a {
 	color: black;
 	text-align: center;
+	font-weight: 500;
 }
