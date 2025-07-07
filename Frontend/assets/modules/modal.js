@@ -1,11 +1,11 @@
-
-
-//      affiche la liste des travaux et un formulaire d'ajout des travaux
+import { getCategories, displayModalGallery } from "./works.js";
 
 const modalGallery = document.querySelector(".modal-gallery");
 const modalForm = document.querySelector(".modal-form");
 
-/* close modal */
+/*
+*** Add click listeners
+*/
 // close modal and reset modal display
 const modal = document.getElementById("modal");
 modal.addEventListener("click", (event) => {
@@ -31,7 +31,6 @@ closeModalFormBtn.addEventListener("click", (event) => {
     modalForm.style.display = "none";
     modalGallery.style.display = "flex";
 });
-/* *** */
 
 // reset modal display
 const previousModalFormBtn = document.querySelector(".previous-modal-btn");
@@ -49,52 +48,19 @@ modalAddPhotoBtn.addEventListener("click", () => {
     modalForm.style.display = "flex";
 });
 
+
+// Set modal form select options
+let categories = await getCategories();
+for (let i = 0; i < categories.length; i++) {
+    let option = document.createElement('option');
+    option.value = i;
+    option.innerText= categories[i].name;
+    imgCategory.appendChild(option);
+}
+
+
 function submitPhoto() {
     // ....
-}
-
-async function deleteItem() {
-    let userToken = window.localStorage.getItem("token");
-    //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTc1MTQ0
-    //Mzc4NCwiZXhwIjoxNzUxNTMwMTg0fQ.K7yvUvLMEYoUrs-kTY-WG45jRtar4mQML6gVqEAiLfw
-
-    const response = await fetch(`http://localhost:5678/api/works/${4}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${userToken}`
-        },
-    });
-    console.log(response)
-    // if 200 remove item from DOM
-    // else alert
-}
-
-/* Add modal gallery and delete buttons */
-function displayModalGallery(items) {
-    const modalGallery = document.querySelector(".modal-gallery-container");
-
-    modalGallery.innerHTML = "";
-    for (let i = 0; i < items.length; i++) {
-
-        const item = document.createElement("div");
-
-        item.style.backgroundImage = `url(${items[i].imageUrl})`
-        item.classList.add("modal-gallery-item");
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.classList.add("delete-item-btn");
-        const deleteSpan = document.createElement("span");
-        deleteSpan.classList.add('fa-solid', 'fa-trash');
-
-        deleteBtn.addEventListener("click", (e) => {
-            console.log("todo delete API");
-            //deleteItem();
-        });
-        deleteBtn.appendChild(deleteSpan);
-        item.appendChild(deleteBtn);
-        modalGallery.appendChild(item);
-    }
 }
 
 async function openEditModal(event) {
@@ -102,8 +68,7 @@ async function openEditModal(event) {
 
     modal.style.display = "flex";
 
-    const works = await (await fetch("http://localhost:5678/api/works")).json();
-    displayModalGallery(works);
+    displayModalGallery();
 }
 
 export { openEditModal };

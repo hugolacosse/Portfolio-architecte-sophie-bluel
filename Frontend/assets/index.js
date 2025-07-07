@@ -1,8 +1,6 @@
-import { getCategories, getItems, displayFilters, displayGallery } from "./modules/works.js";
+import { displayFilters, displayGallery } from "./modules/works.js";
 import { openEditModal } from "./modules/modal.js";
 
-let categories = await getCategories();
-let items = await getItems();
 
 let userToken = window.localStorage.getItem("token");
 if (userToken) {
@@ -17,10 +15,10 @@ if (userToken) {
     displayEditHeader();
     displayEditAnchor();
 } else {
-    displayFilters(categories, items);
+    displayFilters();
 }
 
-displayGallery(items);
+displayGallery();
 
 function displayEditHeader() {
     const editHeader = document.querySelector(".edit-header")
@@ -33,16 +31,3 @@ function displayEditAnchor() {
     editAnchor.style.display = "inline-flex";
     editAnchor.addEventListener("click", openEditModal);
 }
-
-/*
-https://www.youtube.com/watch?v=EIC1_0Dfa9o&t=3s
-https://www.w3schools.com/howto/howto_css_modals.asp
-
-
-// addEventListenener -> click ->
-    - style         :display       : flex
-    - setAttribute  :aria-hidden   : true
-
-// global variable -> let modal = Element
-
-*/
