@@ -21,6 +21,7 @@ modal.addEventListener("click", (event) => {
         modal.style.display = "none";
         if (modalForm.style.display === "flex") {
             modalForm.style.display = "none";
+            removeImg();
             modalGallery.style.display = "flex";
         }
     }
@@ -37,6 +38,7 @@ const closeModalFormBtn = document.querySelector(".close-modal-form");
 closeModalFormBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
     modalForm.style.display = "none";
+    removeImg();
     modalGallery.style.display = "flex";
 });
 
@@ -46,6 +48,7 @@ previousModalFormBtn.addEventListener("click", () => {
     const modalGallery = document.querySelector(".modal-gallery");
     const modalForm = document.querySelector(".modal-form");
     modalForm.style.display = "none";
+    removeImg();
     modalGallery.style.display = "flex";
 });
 
@@ -86,27 +89,22 @@ form.addEventListener('change', (event) => {
 let file = null;
 fileElem.addEventListener("change", updateImageDisplay);
 
-function removeImg(event) {
-    if (event !== null) {
-        event.preventDefault();
-    }
+function removeImg() {
     file = null;
     imgWrapper.style.display = "none";
     inputWrapper.style.display = "flex";
+    submitButton.disabled = true;
 }
 
 function updateImageDisplay(event) {
-    //console.log(event.target.files[0].size)
     if (event.target.files[0].size > 1e6 * 4) {
         // error
         console.log("Plus grand que 4 Mo");
     } else {
         if (file === null) {
             file = event.target.files[0];
-            //style.backgroundImage = `url(${items[i].imageUrl})`
-            imgContainer.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
 
-            deleteImg.addEventListener("click", removeImg);
+            imgContainer.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
 
             inputWrapper.style.display = "none";
             imgWrapper.style.display = "flex";
@@ -124,9 +122,7 @@ async function submitPhoto(event) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("title", imgTitle.value);
-    formData.append("category", "1");
-
-    console.log(formData);
+    formData.append("category", imgCategory.value);
 
     const response = await fetch(`http://localhost:5678/api/works`, {
         method: "POST",
@@ -139,13 +135,14 @@ async function submitPhoto(event) {
     if (response.ok) {
         const data = await response.json();
         form.reset();
-        removeImg(null);
-        submitButton.disabled = true;
         addItem(data);
+        modal.style.display = "none";
+        modalForm.style.display = "none";
+        removeImg();
+        modalGallery.style.display = "flex";
     } else {
         // error
     }
-
 }
 
 

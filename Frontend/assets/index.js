@@ -1,34 +1,32 @@
 import { displayFilters, displayGallery } from "./modules/works.js";
+import { isUserLoggedIn, logout } from "./modules/user.js";
 import { openEditModal } from "./modules/modal.js";
 
-let userToken = window.localStorage.getItem("token");
-
-// If user is logged in: add menus, add logout
-if (userToken) {
-    displayEditHeader();
-    displayEditAnchor();
+if (isUserLoggedIn()) {
+    displayUserHeader();
+    displayUserMenu();
 
     auth.innerText = "logout";
     auth.addEventListener("click", (event) => {
         event.preventDefault();
-        window.localStorage.removeItem("token");
-        window.location.href = 'index.html';
+        logout();
     });
+
 } else {
-    // add filter buttons
+    // if user ISN'T logged in
     displayFilters();
 }
 
-displayGallery();
+displayGallery(null);
 
-function displayEditHeader() {
-    const editHeader = document.querySelector(".edit-header")
-    editHeader.style.display = "flex";
-    editHeader.addEventListener("click", openEditModal);
+function displayUserHeader() {
+    const userHeader = document.querySelector(".user-header")
+    userHeader.style.display = "flex";
+    userHeader.addEventListener("click", openEditModal);
 }
 
-function displayEditAnchor() {
-    const editAnchor = document.querySelector(".portfolio-edit a");
-    editAnchor.style.display = "inline-flex";
-    editAnchor.addEventListener("click", openEditModal);
+function displayUserMenu() {
+    const userMenu = document.querySelector(".user-menu a");
+    userMenu.style.display = "inline-flex";
+    userMenu.addEventListener("click", openEditModal);
 }

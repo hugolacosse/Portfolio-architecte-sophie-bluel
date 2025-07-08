@@ -1,5 +1,5 @@
-/****** user edit header ***********/
-.edit-header {
+/****** user header ***********/
+.user-header {
 	width: 100%;
 	min-height: 59px;
 	display: none;
@@ -9,14 +9,14 @@
 	background-color: black;
 }
 
-.edit-header a {
+.user-header a {
 	color: white;
 	text-decoration: none;
 	font-size: 16px;
 	padding-right: 15px;
 }
 
-.edit-header span {
+.user-header span {
 	padding: 15px 12px 15px 15px;
 }
 
@@ -49,7 +49,7 @@
 	padding-left: 70px;
 }
 
-/****** portfolio section***********/
+/****** portfolio section ***********/
 .portfolio-container {
 	display: flex;
 	flex-direction: row;
@@ -70,8 +70,8 @@
 	padding: 0px 20px;
 }
 
-/* user edit */
-.portfolio-edit a {
+/* user menu */
+.user-menu a {
 	display: none;
 	font-size: 14px;
     color: black;
@@ -81,7 +81,7 @@
     justify-content: flex-start;
 }
 
-.portfolio-edit .fa-solid {
+.user-menu span {
 	padding-right: 10px;
     font-size: 16px;
     padding-bottom: 1px;

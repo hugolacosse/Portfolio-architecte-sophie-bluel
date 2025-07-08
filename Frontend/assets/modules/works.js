@@ -9,13 +9,9 @@ export async function getCategories() {
 }
 
 export function addItem(item) {
-    console.log(item);
-    console.log(items);
-    //items
-    displayGallery();
-    displayModalGallery();
+    items.push(item)
+    displayGallery(null);
 }
-
 
 export function displayFilters() {
     const filtersContainer = document.querySelector(".filters-container");
@@ -65,20 +61,24 @@ function updateFilters(target) {
 }
 
 // Display portfolio gallery
-export function displayGallery() {
+export async function displayGallery(filteredItems) {
+    let elements = await items;
+    if (filteredItems !== null) {
+        elements = filteredItems;
+    }
     const gallery = document.querySelector(".gallery");
 
     gallery.innerHTML = "";
-    for (let i = 0; i < items.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
         const item = document.createElement("figure");
 
         const img = document.createElement("img");
-        img.setAttribute("src", items[i].imageUrl);
-        img.setAttribute("alt", items[i].title);
+        img.setAttribute("src", elements[i].imageUrl);
+        img.setAttribute("alt", elements[i].title);
         item.appendChild(img);
 
         const title = document.createElement("figcaption");
-        title.innerText = items[i].title;
+        title.innerText = elements[i].title;
         item.appendChild(title);
 
         gallery.appendChild(item);
@@ -135,7 +135,7 @@ function removeItems(id) {
     items = items.filter(function (item) {
         return item.id !== id;
     });
-    displayGallery();
+    displayGallery(null);
     displayModalGallery();
 }
 

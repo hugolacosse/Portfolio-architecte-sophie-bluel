@@ -153,20 +153,6 @@
 	align-items: flex-start;
 }
 
-.delete-img-btn {
-	background-color: rgba(0, 0, 0, 0.7);
-	color: white;
-	border-radius: 3px;
-	padding: 3px;
-	margin: 3px;
-	border: none;
-	font-size: 0.7em;
-}
-
-.delete-img-btn:hover {
-	cursor: pointer;
-}
-
 .input-wrapper {
 	width: 100%;
 	display: flex;
