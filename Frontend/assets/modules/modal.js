@@ -1,4 +1,4 @@
-import { getCategories, displayModalGallery } from "./works.js";
+import { getCategories, displayModalGallery, addItem } from "./works.js";
 
 export function openEditModal(event) {
     event.preventDefault();
@@ -59,14 +59,10 @@ modalAddPhotoBtn.addEventListener("click", () => {
 
 /* Form listeners */
 
-form.addEventListener('change', (event) => {
-    //console.log(file) //console.log(imgTitle.value) //console.log(imgCategory.value)
-    if (file && imgTitle.value !== "" && imgCategory.value !== "") {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
-});
+const imgWrapper = document.querySelector(".img-wrapper");
+const imgContainer = document.querySelector(".img-wrapper .img-container");
+const deleteImg = document.querySelector(".img-wrapper .delete-img-btn");
+const inputWrapper = document.querySelector(".input-wrapper");
 
 // Set select's options
 let categories = await getCategories();
@@ -77,10 +73,28 @@ for (let i = 0; i < categories.length; i++) {
     imgCategory.appendChild(option);
 }
 
+// Enable / disable submit button
+form.addEventListener('change', (event) => {
+    //console.log(file) //console.log(imgTitle.value) //console.log(imgCategory.value)
+    if (file && imgTitle.value !== "" && imgCategory.value !== "") {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
+});
+
 let file = null;
 fileElem.addEventListener("change", updateImageDisplay);
 
-// Grand nettoyage
+function removeImg(event) {
+    if (event !== null) {
+        event.preventDefault();
+    }
+    file = null;
+    imgWrapper.style.display = "none";
+    inputWrapper.style.display = "flex";
+}
+
 function updateImageDisplay(event) {
     //console.log(event.target.files[0].size)
     if (event.target.files[0].size > 1e6 * 4) {
@@ -89,19 +103,13 @@ function updateImageDisplay(event) {
     } else {
         if (file === null) {
             file = event.target.files[0];
-            const image = document.createElement("img");
-            image.src = URL.createObjectURL(event.target.files[0]);
-            image.alt = image.title = event.target.name;
-            const fileWrapper = document.querySelector(".file-wrapper");
+            //style.backgroundImage = `url(${items[i].imageUrl})`
+            imgContainer.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
 
-            const icon = document.querySelector(".file-wrapper .fa-regular");
-            const label = document.querySelector(".file-wrapper label");
-            const text = document.querySelector(".file-wrapper p");
-            icon.remove();
-            label.remove();
-            text.remove();
+            deleteImg.addEventListener("click", removeImg);
 
-            fileWrapper.prepend(image);
+            inputWrapper.style.display = "none";
+            imgWrapper.style.display = "flex";
         }
     }
 }
@@ -116,11 +124,10 @@ async function submitPhoto(event) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("title", imgTitle.value);
-    formData.append("category", imgCategory.value);
+    formData.append("category", "1");
 
     console.log(formData);
 
-    /*
     const response = await fetch(`http://localhost:5678/api/works`, {
         method: "POST",
         headers: {
@@ -128,9 +135,36 @@ async function submitPhoto(event) {
         },
         body: formData
     });
-    */
 
-    form.reset();
-    submitButton.disabled = true;
-    // addItem()
+    if (response.ok) {
+        const data = await response.json();
+        form.reset();
+        removeImg(null);
+        submitButton.disabled = true;
+        addItem(data);
+    } else {
+        // error
+    }
+
 }
+
+
+/*
+function displayLoginError(message) {
+    let spanErrorMessage = document.getElementById("errorMessage");
+
+    if (message === "" && spanErrorMessage) {
+        spanErrorMessage.remove()
+        return ;
+    }
+
+    if (message !== "" && !spanErrorMessage) {
+        let container = document.querySelector(".errorContainer");
+        
+        spanErrorMessage = document.createElement("span");
+        spanErrorMessage.id = "errorMessage";
+        spanErrorMessage.innerText = message;
+        container.append(spanErrorMessage);
+    }
+}
+    */

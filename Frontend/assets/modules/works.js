@@ -9,6 +9,11 @@ export async function getCategories() {
 }
 
 export function addItem(item) {
+    console.log(item);
+    console.log(items);
+    //items
+    displayGallery();
+    displayModalGallery();
 }
 
 
