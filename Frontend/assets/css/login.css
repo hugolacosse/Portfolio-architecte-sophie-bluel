@@ -1,12 +1,10 @@
 /****** navbar ***********/
 .current-page {
 	font-weight: bold;
+	font-weight: 600;
 }
 
 /****** main ***********/
-.current-page {
-	font-weight: 600;
-}
 
 #login {
 	width: 34%;
@@ -17,7 +15,7 @@
 	text-align: center;
 }
 
-#login h2{
+#login h2 {
 	margin-bottom: 20px;
 }
 
@@ -50,7 +48,7 @@
 	font-weight: 500;
 }
 
-#login input[type="submit"]{
+#login input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 14px;
@@ -60,7 +58,7 @@
 	width: 180px;
 	height: 36px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
 }
 
 #login input[type="submit"]:hover {
