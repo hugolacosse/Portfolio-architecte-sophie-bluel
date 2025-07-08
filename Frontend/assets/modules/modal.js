@@ -26,6 +26,7 @@ function showModalGallery() {
 
 function showModalform() {
     form.reset();
+    displayError("");
     clearImgWrapper();
     modalGallery.style.display = "none";
     modalForm.style.display = "flex";
