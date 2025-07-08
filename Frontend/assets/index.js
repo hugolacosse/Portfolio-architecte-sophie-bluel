@@ -1,6 +1,6 @@
 import { displayFilters, displayGallery } from "./modules/works.js";
 import { isUserLoggedIn, logout } from "./modules/user.js";
-import { openEditModal } from "./modules/modal.js";
+import { openUserModal } from "./modules/modal.js";
 
 if (isUserLoggedIn()) {
     displayUserHeader();
@@ -22,11 +22,11 @@ displayGallery(null);
 function displayUserHeader() {
     const userHeader = document.querySelector(".user-header")
     userHeader.style.display = "flex";
-    userHeader.addEventListener("click", openEditModal);
+    userHeader.addEventListener("click", openUserModal);
 }
 
 function displayUserMenu() {
     const userMenu = document.querySelector(".user-menu a");
     userMenu.style.display = "inline-flex";
-    userMenu.addEventListener("click", openEditModal);
+    userMenu.addEventListener("click", openUserModal);
 }

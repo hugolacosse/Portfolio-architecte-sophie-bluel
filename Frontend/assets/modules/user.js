@@ -27,24 +27,28 @@ function displayLoginError(message) {
 
 export async function login(event) {
     event.preventDefault();
+
+    const submitButton = document.querySelector("#submitButton");
     submitButton.disabled = true;
 
-    // Send authentication request
+    const emailInput = document.querySelector("#email");
+    const passwordInput = document.querySelector("#password");
+
     const response = await fetch("http://localhost:5678/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            "email": email.value,
-            "password": password.value
+            "email": emailInput.value,
+            "password": passwordInput.value
         })
     });
 
-    // Check response
     if (response.status !== 200) {
         displayLoginError("Erreur dans l'identifiant ou le mot de passe");
         submitButton.disabled = false;
         return ;
     }
+
     const data = await response.json();
 
     // Store user token and redirect

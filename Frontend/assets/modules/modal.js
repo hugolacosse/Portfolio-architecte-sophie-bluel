@@ -1,74 +1,66 @@
 import { getCategories, displayModalGallery, addItem } from "./works.js";
 
-export function openEditModal(event) {
+export function openUserModal(event) {
     event.preventDefault();
 
     modal.style.display = "flex";
-
     displayModalGallery();
 }
 
-const modalGallery = document.querySelector(".modal-gallery");
-const modalForm = document.querySelector(".modal-form"); // modalForm is a div
-form.reset(); // form is the form
-
-/* Click listeners */
-
-// close modal and reset modal display
+/**** Managing modal display ****/
 const modal = document.getElementById("modal");
+const modalGallery = document.querySelector(".modal-gallery");
+const modalForm = document.querySelector(".modal-form");
+const form = document.querySelector(".modal-form form");
+
+function closeModal() {
+    modal.style.display = "none";
+    modalForm.style.display = "none";
+    modalGallery.style.display = "flex";
+}
+
+function showModalGallery() {
+    modalForm.style.display = "none";
+    modalGallery.style.display = "flex";
+}
+
+function showModalform() {
+    form.reset();
+    clearImgWrapper();
+    modalGallery.style.display = "none";
+    modalForm.style.display = "flex";
+}
+
 modal.addEventListener("click", (event) => {
     if (event.target === modal) {
-        modal.style.display = "none";
-        if (modalForm.style.display === "flex") {
-            modalForm.style.display = "none";
-            removeImg();
-            form.reset(); // form is the form
-            modalGallery.style.display = "flex";
-        }
+        closeModal();
     }
 });
 
-// close modal
 const closeModalGalleryBtn = document.querySelector(".close-modal-gallery");
-closeModalGalleryBtn.addEventListener("click", (event) => {
-    modal.style.display = "none";
-});
+closeModalGalleryBtn.addEventListener("click", closeModal);
 
-// close modal and reset modal display
 const closeModalFormBtn = document.querySelector(".close-modal-form");
-closeModalFormBtn.addEventListener("click", (event) => {
-    modal.style.display = "none";
-    modalForm.style.display = "none";
-    modalGallery.style.display = "flex";
-});
+closeModalFormBtn.addEventListener("click", closeModal);
 
-// reset modal display
 const previousModalFormBtn = document.querySelector(".previous-modal-btn");
-previousModalFormBtn.addEventListener("click", () => {
-    const modalGallery = document.querySelector(".modal-gallery");
-    const modalForm = document.querySelector(".modal-form");
-    modalForm.style.display = "none";
-    modalGallery.style.display = "flex";
-});
+previousModalFormBtn.addEventListener("click", showModalGallery);
 
-// display modal form
 const modalAddPhotoBtn = document.querySelector(".add-photo");
-modalAddPhotoBtn.addEventListener("click", () => {
-    form.reset();
-    removeImg();
-    modalGallery.style.display = "none";
-    modalForm.style.display = "flex";
+modalAddPhotoBtn.addEventListener("click", showModalform);
+
+const submitButton = document.querySelector('.submit-photo');
+submitButton.addEventListener('click', submitPhoto);
+
+form.addEventListener('change', (event) => {
+    if (file && imgTitle.value !== "" && imgCategory.value !== "") {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
 });
 
-
-/* Form listeners */
-
-const imgWrapper = document.querySelector(".img-wrapper");
-const imgContainer = document.querySelector(".img-wrapper .img-container");
-const deleteImg = document.querySelector(".img-wrapper .delete-img-btn");
-const inputWrapper = document.querySelector(".input-wrapper");
-
-// Set select's options
+/**** Add form select options ****/
 let categories = await getCategories();
 for (let i = 0; i < categories.length; i++) {
     let option = document.createElement('option');
@@ -77,20 +69,15 @@ for (let i = 0; i < categories.length; i++) {
     imgCategory.appendChild(option);
 }
 
-// Enable / disable submit button
-form.addEventListener('change', (event) => {
-    //console.log(file) //console.log(imgTitle.value) //console.log(imgCategory.value)
-    if (file && imgTitle.value !== "" && imgCategory.value !== "") {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
-});
-
+/**** Handle file input ****/
 let file = null;
 fileElem.addEventListener("change", updateImageDisplay);
 
-function removeImg() {
+const imgWrapper = document.querySelector(".img-wrapper");
+const imgContainer = document.querySelector(".img-wrapper .img-container");
+const inputWrapper = document.querySelector(".input-wrapper");
+
+function clearImgWrapper() {
     file = null;
     imgWrapper.style.display = "none";
     inputWrapper.style.display = "flex";
@@ -113,9 +100,7 @@ function updateImageDisplay(event) {
     }
 }
 
-const submitButton = document.querySelector('.submit-photo');
-submitButton.addEventListener('click', submitPhoto);
-
+/**** Handle submit form ****/
 async function submitPhoto(event) {
     event.preventDefault();
     let userToken = window.localStorage.getItem("token");
@@ -139,7 +124,7 @@ async function submitPhoto(event) {
         addItem(data);
         modal.style.display = "none";
         modalForm.style.display = "none";
-        removeImg();
+        clearImgWrapper();
         modalGallery.style.display = "flex";
     } else {
         if (response.message) {
