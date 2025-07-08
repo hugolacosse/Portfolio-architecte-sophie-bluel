@@ -59,7 +59,7 @@ function updateFilters(target) {
     }
 }
 
-// Display main gallery
+// Display portfolio gallery
 export function displayGallery() {
     const gallery = document.querySelector(".gallery");
 
@@ -125,7 +125,7 @@ async function deleteItem(event) {
     }
 }
 
-// Remove in-memory item and update content
+// Remove in-memory item and update page content
 function removeItems(id) {
     items = items.filter(function (item) {
         return item.id !== id;

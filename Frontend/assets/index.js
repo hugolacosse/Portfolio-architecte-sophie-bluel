@@ -1,21 +1,21 @@
 import { displayFilters, displayGallery } from "./modules/works.js";
 import { openEditModal } from "./modules/modal.js";
 
-
 let userToken = window.localStorage.getItem("token");
+
+// If user is logged in: add menus, add logout
 if (userToken) {
-    // logout() from "user.js?"
+    displayEditHeader();
+    displayEditAnchor();
+
     auth.innerText = "logout";
     auth.addEventListener("click", (event) => {
         event.preventDefault();
         window.localStorage.removeItem("token");
         window.location.href = 'index.html';
     });
-    console.log(userToken);
-
-    displayEditHeader();
-    displayEditAnchor();
 } else {
+    // add filter buttons
     displayFilters();
 }
 

@@ -1,13 +1,19 @@
 import { getCategories, displayModalGallery } from "./works.js";
 
-const modalGallery = document.querySelector(".modal-gallery");
-const modalForm = document.querySelector(".modal-form");
-// form is the form, modalForm is a wrapper
-form.reset();
+export function openEditModal(event) {
+    event.preventDefault();
 
-/*
-*** Add click listeners
-*/
+    modal.style.display = "flex";
+
+    displayModalGallery();
+}
+
+const modalGallery = document.querySelector(".modal-gallery");
+const modalForm = document.querySelector(".modal-form"); // modalForm is a div
+form.reset(); // form is the form
+
+/* Click listeners */
+
 // close modal and reset modal display
 const modal = document.getElementById("modal");
 modal.addEventListener("click", (event) => {
@@ -51,7 +57,18 @@ modalAddPhotoBtn.addEventListener("click", () => {
 });
 
 
-// Set modal form select options
+/* Form listeners */
+
+form.addEventListener('change', (event) => {
+    //console.log(file) //console.log(imgTitle.value) //console.log(imgCategory.value)
+    if (file && imgTitle.value !== "" && imgCategory.value !== "") {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
+});
+
+// Set select's options
 let categories = await getCategories();
 for (let i = 0; i < categories.length; i++) {
     let option = document.createElement('option');
@@ -63,8 +80,9 @@ for (let i = 0; i < categories.length; i++) {
 let file = null;
 fileElem.addEventListener("change", updateImageDisplay);
 
+// Grand nettoyage
 function updateImageDisplay(event) {
-     console.log(event.target.files[0].size)
+    //console.log(event.target.files[0].size)
     if (event.target.files[0].size > 1e6 * 4) {
         // error
         console.log("Plus grand que 4 Mo");
@@ -98,8 +116,11 @@ async function submitPhoto(event) {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("title", imgTitle.value);
-    formData.append("category", "2");
+    formData.append("category", imgCategory.value);
 
+    console.log(formData);
+
+    /*
     const response = await fetch(`http://localhost:5678/api/works`, {
         method: "POST",
         headers: {
@@ -107,27 +128,9 @@ async function submitPhoto(event) {
         },
         body: formData
     });
+    */
 
-    console.log(response);
+    form.reset();
+    submitButton.disabled = true;
+    // addItem()
 }
-
-form.addEventListener('change', (event) => {
-    console.log(file)
-    console.log(imgTitle.value)
-    console.log(imgCategory.value)
-    if (file && imgTitle.value !== "" && imgCategory.value !== "") {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
-});
-
-async function openEditModal(event) {
-    event.preventDefault();
-
-    modal.style.display = "flex";
-
-    displayModalGallery();
-}
-
-export { openEditModal };
