@@ -22,6 +22,7 @@ modal.addEventListener("click", (event) => {
         if (modalForm.style.display === "flex") {
             modalForm.style.display = "none";
             removeImg();
+            form.reset(); // form is the form
             modalGallery.style.display = "flex";
         }
     }
@@ -38,7 +39,6 @@ const closeModalFormBtn = document.querySelector(".close-modal-form");
 closeModalFormBtn.addEventListener("click", (event) => {
     modal.style.display = "none";
     modalForm.style.display = "none";
-    removeImg();
     modalGallery.style.display = "flex";
 });
 
@@ -48,13 +48,14 @@ previousModalFormBtn.addEventListener("click", () => {
     const modalGallery = document.querySelector(".modal-gallery");
     const modalForm = document.querySelector(".modal-form");
     modalForm.style.display = "none";
-    removeImg();
     modalGallery.style.display = "flex";
 });
 
 // display modal form
 const modalAddPhotoBtn = document.querySelector(".add-photo");
 modalAddPhotoBtn.addEventListener("click", () => {
+    form.reset();
+    removeImg();
     modalGallery.style.display = "none";
     modalForm.style.display = "flex";
 });
@@ -71,7 +72,7 @@ const inputWrapper = document.querySelector(".input-wrapper");
 let categories = await getCategories();
 for (let i = 0; i < categories.length; i++) {
     let option = document.createElement('option');
-    option.value = i;
+    option.value = i + 1;
     option.innerText= categories[i].name;
     imgCategory.appendChild(option);
 }
@@ -98,9 +99,9 @@ function removeImg() {
 
 function updateImageDisplay(event) {
     if (event.target.files[0].size > 1e6 * 4) {
-        // error
-        console.log("Plus grand que 4 Mo");
+        displayError("Erreur, l'image est trop volumineuse");
     } else {
+        displayError("");
         if (file === null) {
             file = event.target.files[0];
 
@@ -141,14 +142,16 @@ async function submitPhoto(event) {
         removeImg();
         modalGallery.style.display = "flex";
     } else {
-        // error
+        if (response.message) {
+            displayError(response.message);
+        } else {
+            displayError("Une erreur s'est produite lors de l'envoi du formulaire");
+        }
     }
 }
 
-
-/*
-function displayLoginError(message) {
-    let spanErrorMessage = document.getElementById("errorMessage");
+function displayError(message) {
+    let spanErrorMessage = document.getElementById("error-message");
 
     if (message === "" && spanErrorMessage) {
         spanErrorMessage.remove()
@@ -156,12 +159,11 @@ function displayLoginError(message) {
     }
 
     if (message !== "" && !spanErrorMessage) {
-        let container = document.querySelector(".errorContainer");
+        let container = document.querySelector(".error-container");
         
         spanErrorMessage = document.createElement("span");
-        spanErrorMessage.id = "errorMessage";
+        spanErrorMessage.id = "error-message";
         spanErrorMessage.innerText = message;
         container.append(spanErrorMessage);
     }
 }
-    */

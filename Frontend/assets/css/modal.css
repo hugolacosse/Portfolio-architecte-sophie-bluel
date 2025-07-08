@@ -126,6 +126,21 @@
 	justify-content: space-between;
 }
 
+.error-container {
+	width: 70%;
+}
+
+#error-message {
+	display: inline-block;
+	text-align: left;
+	font-weight: bold;
+	width: calc(100% - 20px);
+	background-color: rgba(211,47,47, 0.4);
+	padding: 20px 0px 20px 20px;
+	border-radius: 6px;
+	margin: 10px auto;
+}
+
 .modal-form form {
 	display: flex;
 	flex-direction: column;
@@ -203,6 +218,8 @@
 	font-size: 14px;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	text-indent: 10px;
+	font-family: 'Work Sans';
 }
 
 .modal-form select {
